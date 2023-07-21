@@ -1,0 +1,321 @@
+@use "fonts";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/***************************************************************************************/
+/********************************* Default Reset(Start)*********************************/
+/***************************************************************************************/
+
+// https://piccalil.li/blog/a-modern-css-reset
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/***************************************************************************************/
+/********************************* Default Reset(End)***********************************/
+/***************************************************************************************/
+
+/***************************************************************************************/
+/********************************* Tailwind Related(Start)******************************/
+/***************************************************************************************/
+
+@layer components {
+  .main-tab {
+    @apply hover-animation rounded-[10px]
+           outline-none focus-visible:ring-2 focus-visible:ring-secondary-40 focus-visible:transition-shadow focus-visible:duration-200 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .main-border {
+    @apply rounded-2xl border-[1px] border-main-border;
+  }
+
+  .accent-bg-tab {
+    @apply focus-visible:bg-main-accent/100;
+  }
+
+  .lazy-loading {
+    @apply animate-pulse-fast bg-accent-blue;
+  }
+
+  .hover-animation {
+    @apply transition-colors duration-200;
+  }
+
+  .blur-picture {
+    @apply hover-animation accent-tab rounded-full transition hover:brightness-75 active:brightness-100;
+  }
+
+  .active-link {
+    @apply text-main-text;
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  // This allows us to use 'no-scrollbar' with Tailwind breakpoints like this 'md:no-scrollbar'
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .custom-scrollbar {
+    /* width */
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      background-color: #555;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: #f5f5f5;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #f5f5f5;
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --main-background-start-rgb: var(--dark-background-start-rgb);
+    --main-background-end-rgb: var(--dark-background-end-rgb);
+
+    --main-background: var(--dark-background);
+    --main-border: var(--dark-border);
+    --main-text: var(--dark-text);
+
+    --main-search-background: var(--dark-search-background);
+    --main-sidebar-background: var(--dark-sidebar-background);
+    --main-accent: var(--accent-purple) !important;
+
+    --light-background: 255 255 255;
+    --dark-background: 22 14 37;
+
+    --light-border: 0 0 0;
+    --dark-border: 62 54 77;
+
+    --light-text: 0 0 0;
+    --dark-text: 247 247 247;
+
+    --light-search-background: 239 243 244;
+    --dark-search-background: 32 35 39;
+
+    --light-sidebar-background: 247 249 249;
+    --dark-sidebar-background: 22 24 28;
+
+    --light-background-start-rgb: 36, 10, 55;
+    --light-background-end-rgb: 16, 8, 30;
+
+    --dark-background-start-rgb: 36, 10, 55;
+    --dark-background-end-rgb: 16, 8, 30;
+
+    --accent-yellow: 255 213 0;
+    --accent-blue: 29 155 240;
+    --accent-pink: 249 26 130;
+    --accent-purple: 104 84 142;
+    --accent-orange: 255 122 0;
+    --accent-green: 0 184 122;
+
+    --neutral-black: 22 14 37;
+    --neutral-80: 38 24 64;
+    --neutral-70: 68 43 115;
+    --neutral-60: 104 94 142;
+    --neutral-50: 122 114 138;
+    --neutral-40: 170 166 178;
+    --neutral-30: 203 203 203;
+    --neutral-20: 248 248 248;
+    --neutral-10: 249 248 251;
+    --neutral-white: 255 255 255;
+
+    --primary-80: 121 56 197;
+    --primary-60: 153 87 229;
+    --primary-40: 187 140 242;
+    --primary-20: 220 203 242;
+    --primary-10: 245 239 253;
+
+    --secondary-80: 146 20 204;
+    --secondary-60: 183 0 247;
+    --secondary-40: 201 116 241;
+    --secondary-20: 232 194 250;
+
+    --success-100: 27 177 96;
+    --success-50: 47 221 127;
+    --success-40: 172 241 204;
+    --success-20: 222 250 234;
+
+    --danger-100: 205 100 104;
+    --danger-50: 241 106 106;
+    --danger-40: 255 102 102;
+
+    //  https://utopia.fyi/ (for responsive font size)
+    --step--2: clamp(0.91rem, calc(0.89rem + 0.1vw), 0.96rem);
+    --step--1: clamp(1.09rem, calc(1.05rem + 0.21vw), 1.2rem);
+    --step-0: clamp(1.31rem, calc(1.24rem + 0.37vw), 1.5rem);
+    --step-1: clamp(1.58rem, calc(1.46rem + 0.59vw), 1.88rem);
+    --step-2: clamp(1.89rem, calc(1.71rem + 0.89vw), 2.34rem);
+    --step-3: clamp(2.27rem, calc(2.01rem + 1.29vw), 2.93rem);
+    --step-4: clamp(2.72rem, calc(2.36rem + 1.83vw), 3.66rem);
+    --step-5: clamp(3.27rem, calc(2.75rem + 2.56vw), 4.58rem);
+
+    --max-width: 1100px;
+    --border-radius: 12px;
+
+    //Font Sizes
+    --font-size-display-large: 40px;
+    --font-size-display-medium: 32px;
+    --font-size-display-small: 28px;
+    --font-size-heading-large: 24px;
+    --font-size-heading-medium: 20px;
+    --font-size-heading-small: 18px;
+    --font-size-base-large: 16px;
+    --font-size-base-medium: 14px;
+    --font-size-base-small: 12px;
+    --font-size-caption-big: 10px;
+    --font-size-caption-small: 8px;
+
+    @media screen and (min-width: 550px) {
+      --font-size-display-large: 56px;
+      --font-size-display-medium: 40px;
+      --font-size-display-small: 32px;
+      --font-size-heading-large: 28px;
+      --font-size-heading-medium: 24px;
+      --font-size-heading-small: 20px;
+      --font-size-base-large: 18px;
+      --font-size-base-medium: 16px;
+      --font-size-base-small: 14px;
+      --font-size-caption-big: 12px;
+      --font-size-caption-small: 10px;
+    }
+
+    //Line Heights
+    --line-height-display-large: 1.5;
+    --line-height-display-medium: 1.5;
+    --line-height-display-small: 1.5;
+    --line-height-heading-large: 1.5;
+    --line-height-heading-medium: 1.5;
+    --line-height-heading-small: 1.5;
+    --line-height-base-large: 1.5;
+    --line-height-base-medium: 1.5;
+    --line-height-base-small: 1.5;
+    --line-height-caption-big: 1.5;
+    --line-height-caption-small: 1.5;
+  }
+
+  //Only one theme at the moment
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
+
+    // :root {
+    //   --main-background: var(--dark-background);
+    //   --main-text: var(--dark-text);
+
+    //   --main-search-background: var(--dark-search-background);
+    //   --main-sidebar-background: var(--dark-sidebar-background);
+    //   --main-accent: var(--accent-purple) !important;
+
+    //   --background-start-rgb: 36, 10, 55;
+    //   --background-end-rgb: 16, 8, 30;
+    // }
+  }
+}
+
+/***************************************************************************************/
+/********************************* Tailwind Related(End)********************************/
+/***************************************************************************************/
+
+body {
+  @apply custom-scrollbar overflow-x-hidden bg-main-gradient-background bg-cover bg-fixed bg-no-repeat font-default text-base-medium text-main-text antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main {
+  width: min(100%, var(--max-width));
+  height: 100%;
+  margin: auto;
+}
